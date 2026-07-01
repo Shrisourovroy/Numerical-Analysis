@@ -1,0 +1,44 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+double func(double x){
+    return x*x*x - x*x - 2;
+}
+
+void bisection(double a, double b, double eph){
+    if(func(a)*func(b)>=0){
+        cout<<"Wrong value of a and b...."<<endl;
+        return;
+    }
+    double c;
+    int itr = 0;
+    cout<<"Itr"<<"\t"<<"a"<<"\t"<<"b"<<"\t"<<"c"<<"\t"<<"func(a)"<<"\t"<<"func(b)"<<endl;
+
+    while((b-a)>eph){
+        c = (a+b)/2;
+        cout << fixed << setprecision(3);
+        cout<<++itr<<"\t"<<a<<"\t"<<b<<"\t"<<c<<"\t"<<func(a)<<"\t"<<func(c)<<endl;
+        if(func(c)==0.0){
+            break;
+        }
+        if(func(a)*func(c)<0){
+            b = c;
+        }
+        else {
+            a = c;
+        }
+    }
+    cout<<"The root of the equation: "<<c<<endl;
+}
+
+int main(){
+    int a,b;
+    double error;
+    cout<<"Enter the value of a and b: ";
+    cin>>a>>b;
+    cout<<"Enter error: ";
+    cin>>error;
+    bisection(a,b,error);
+    return 0;
+}
