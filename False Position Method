@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+float func(float x){
+    return 3*x - cos(x) - 1;
+}
+
+int main(){
+    
+    cout<<"Enter the value of a and b: ";
+    float a, b, c;
+    cin>>a>>b;
+    
+    if(func(a)*func(b)>0){
+       cout<<"Try another value of a and b...";
+    }
+
+    while(1){
+
+         c = ((a*func(b)) - (b*func(a)))/(func(b)-func(a));
+        if(func(a)*func(c)>0){
+            a = c;
+        }
+        if(func(a)*func(c)<0){
+            b = c;
+        }
+
+        if(fabs(func(c))<= 0.001){
+            break;
+        }
+
+    }
+    cout<<c<<endl;
+
+    return 0;
+}
