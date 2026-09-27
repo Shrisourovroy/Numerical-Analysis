@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+double fun(double x){
+    return x*x*x - 2*x*x - x + 2;
+}
+
+void modifiedBisection(double a, double b, int n){
+
+      double fa, fb, xr, fxr;
+      int i = 1;
+      cout<<"Itr"<<setw(10)<<"a"<<setw(10)<<"b"<<setw(10)<<"fun(a)"<<setw(10)<<"fun(b)"<<setw(10)<<"func(c)"<<endl;
+      while(1){
+        fa = fun(a);
+        fb = fun(b);
+
+        xr = (a*fabs(fb) + b*fabs(fa))/(fabs(fa)+fabs(fb));
+        fxr = fun(xr);
+        cout<<fixed<<setprecision(3);
+
+        cout<<right<<i<<setw(10)<<a<<setw(10)<<b<<setw(10)<<fa<<setw(10)<<fb<<setw(10)<<fxr<<endl;
+        if(fabs(fxr)<=0.001){
+            break;
+        }
+        else if(fa*fxr < 0){
+            b = xr;
+        }
+        else
+            a = xr;
+
+        i++;
+      }
+      cout<<"Approximate root: "<<xr<<endl;
+}
+
+int main(){
+   modifiedBisection(-2, 0, 15);
+   modifiedBisection(0, 1.5, 15);
+   modifiedBisection(1.5, 3, 15);
+
+}
